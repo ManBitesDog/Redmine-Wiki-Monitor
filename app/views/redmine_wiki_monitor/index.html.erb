@@ -1,2 +1,21 @@
 <h2>위키 통계</h2>
-<%=debug @total%>
+<table class="issue-report">
+  <thead>
+  <tr>
+    <th>프로젝트</th>
+    <th>페이지수</th>
+    <th>글자수</th>
+    <th>변경횟수</th>
+  </tr>
+  </thead>
+  <tbody>
+<% @totals.each {|summary| %>
+  <tr class="entry">
+    <td><%=summary["project_name"]%></td>
+    <td class="size"><%=number_with_precision(summary["number_of_pages"], :delimiter => ',', :precision => 0)%></td>
+    <td class="size"><%=number_with_precision(summary["number_of_characters"], :delimiter => ',', :precision => 0)%></td>
+    <td class="size"><%=number_with_precision(summary["number_of_revisions"], :delimiter => ',', :precision => 0)%></td>
+  </tr>
+<% } %>
+  </tbody>
+</table>

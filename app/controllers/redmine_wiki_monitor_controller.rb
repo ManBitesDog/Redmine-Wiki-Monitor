@@ -3,6 +3,6 @@ class RedmineWikiMonitorController < ApplicationController
   unloadable
 
   def index
-    @total = WikiMonitor.total_summary
+    @totals = WikiMonitor.total_summary
   end
 end
