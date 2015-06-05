@@ -2,7 +2,7 @@ class WikiMonitor < ActiveRecord::Base
   unloadable
 
   def self.total_summary()
-    ActiveRecord::Base.connection.select_all("SELECT count(*) number_of_pages, sum(length(C.text)) number_of_characters, sum(C.version) number_of_revisions, P.name project_name
+    ActiveRecord::Base.connection.select_all("SELECT count(*) number_of_pages, sum(char_length(C.text)) number_of_characters, sum(C.version) number_of_revisions, P.name project_name
     FROM wiki_contents C,
       (SELECT P.id, W.name
       FROM wiki_pages P,
