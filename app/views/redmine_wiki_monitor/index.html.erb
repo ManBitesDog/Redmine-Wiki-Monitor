@@ -1,21 +1,44 @@
-<h2>위키 통계</h2>
-<table class="issue-report">
-  <thead>
-  <tr>
-    <th>프로젝트</th>
-    <th>페이지수</th>
-    <th>글자수</th>
-    <th>변경횟수</th>
-  </tr>
-  </thead>
-  <tbody>
-<% @totals.each {|summary| %>
-  <tr class="entry">
-    <td><%=summary["project_name"]%></td>
-    <td class="size"><%=number_with_precision(summary["number_of_pages"], :delimiter => ',', :precision => 0)%></td>
-    <td class="size"><%=number_with_precision(summary["number_of_characters"], :delimiter => ',', :precision => 0)%></td>
-    <td class="size"><%=number_with_precision(summary["number_of_revisions"], :delimiter => ',', :precision => 0)%></td>
-  </tr>
-<% } %>
-  </tbody>
-</table>
+<div class="splitcontentleft">
+	<h2>프로젝트별 합계</h2>
+	<table class="issue-report">
+	  <thead>
+	  <tr>
+	    <th>프로젝트</th>
+	    <th>페이지수</th>
+	    <th>글자수</th>
+	    <th>변경횟수</th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	<% @totals.each {|summary| %>
+	  <tr class="<%= cycle("odd", "even") %>">
+	    <td><%=summary["PROJECT_NAME"]%></td>
+	    <td class="size"><%=number_with_precision(summary["NUMBER_OF_PAGES"], :delimiter => ',', :precision => 0)%></td>
+	    <td class="size"><%=number_with_precision(summary["NUMBER_OF_CHARACTERS"], :delimiter => ',', :precision => 0)%></td>
+	    <td class="size"><%=number_with_precision(summary["NUMBER_OF_REVISIONS"], :delimiter => ',', :precision => 0)%></td>
+	  </tr>
+	<% } %>
+	  </tbody>
+	</table>
+</div>
+<div class="splitcontentright">
+	<h2>사용자별 작성량</h2>
+	<table class="issue-report">
+	  <thead>
+	  <tr>
+	    <th>사용자</th>
+	    <th>만든 페이지 수</th>
+	    <th>수정한 페이지 수</th>
+	  </tr>
+	  </thead>
+	  <tbody>
+	<% @by_users.each {|user| %>
+	  <tr class="<%= cycle("odd", "even") %>">
+	    <td><%=user["USER_NAME"]%></td>
+	    <td class="size"><%=number_with_precision(user["NUMBER_OF_CREATED"], :delimiter => ',', :precision => 0)%></td>
+	    <td class="size"><%=number_with_precision(user["NUMBER_OF_EDITED"], :delimiter => ',', :precision => 0)%></td>
+	  </tr>
+	<% } %>
+	  </tbody>
+	</table>
+</div>
