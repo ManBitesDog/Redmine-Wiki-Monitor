@@ -6,4 +6,8 @@ class RedmineWikiMonitorController < ApplicationController
     @totals = WikiMonitor.total_summary
     @by_users = WikiMonitor.by_users
   end
+  
+  def by_user
+    
+  end
 end
